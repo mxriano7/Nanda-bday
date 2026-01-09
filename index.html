@@ -61,7 +61,11 @@ html, body {
 h1 { margin-bottom: 1rem; }
 .front h1 { font-size: 1.6rem; }
 .back h1 { font-size: 1.4rem; }
-p { font-size: 0.95rem; line-height: 1.55em; color: #e6e6e6; }
+p {
+    font-size: 0.95rem;
+    line-height: 1.55em;
+    color: #e6e6e6;
+}
 
 /* BOTÃO */
 button {
@@ -77,35 +81,53 @@ button {
 }
 
 /* CONFETES */
-.confetti-layer { position: fixed; inset: 0; pointer-events: none; }
+.confetti-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+}
 .confetti {
     position: absolute;
-    width: 8px; height: 14px;
+    width: 8px;
+    height: 14px;
     background: var(--c);
-    top: 50%; left: 50%;
+    top: 50%;
+    left: 50%;
     opacity: 0;
 }
-.explode .confetti { animation: explode 1.6s ease-out forwards; }
+.explode .confetti {
+    animation: explode 1.6s ease-out forwards;
+}
 @keyframes explode {
-    from { transform: translate(-50%,-50%) rotate(0deg); opacity:1; }
-    to { transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) rotate(var(--r)); opacity:0; }
+    from {
+        transform: translate(-50%,-50%) rotate(0deg);
+        opacity: 1;
+    }
+    to {
+        transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y)))
+                   rotate(var(--r));
+        opacity: 0;
+    }
 }
 </style>
 </head>
+
 <body id="body">
 
 <div class="scene">
     <div class="card" id="card">
+
         <!-- FACE 1 -->
         <div class="face front">
             <h1>Parabénsss 🎉</h1>
             <p>
                 <strong>Feliz Aniversário, Nanda! ✨</strong><br><br>
-                Hoje não é um dia especial apenas pela data, e sim porque é o dia em que alguém como você surgiu no mundo.<br><br>
+                Hoje não é um dia especial apenas pela data,
+                e sim porque é o dia em que alguém como você surgiu no mundo.<br><br>
                 E isso, por si só, já faz toda a diferença.<br><br>
-                Que Deus esteja sempre contigo, ainda mais neste novo ciclo,  
+                Que Deus esteja sempre contigo, ainda mais neste novo ciclo,
                 e que os desafios se transformem em leveza ao longo desse caminho 🤍<br><br>
-                Aproveite seu dia, Senhorita 🫂  
+                Aproveite seu dia, Senhorita 🫂
             </p>
             <button class="action">Celebrar 🎊</button>
         </div>
@@ -114,27 +136,41 @@ button {
         <div class="face back">
             <h1>Um recado apenas para você 💌</h1>
             <p>
-                Hoje não poderia deixar passar a oportunidade de te dizer algo que sinto  
-                sempre que meus pensamentos se voltam para você…<br><br>
-                Bom, eu posso dizer que caminhei por mil lugares, vi milhares de pessoas.  
-                Passei por desafios, objetivos e sonhos que pensei serem apenas meus e suficientes,  
-                mas, aos poucos, percebi que, entre essas ambições,  
-                existem instantes em que tudo parece se aquietar,  
-                e o mundo se revela repleto de possibilidades fascinantes e convidativas,  
-                é justamente nesses momentos que você inevitavelmente surge nos meus pensamentos.<br><br>
-                Então parabéns, você se tornou a razão de eu me pegar imaginando a <br>"minha bela donzela" <br><br>
-                Ainda não posso chamá-la assim,  
-                mas algo me diz que isso é só questão de tempo.<br><br>
-                Enquanto isso,  
-                aproveito cada momento em que minha mente se aquieta,  
-                e me pego imaginando o que o futuro pode reservar.<br><br>
-                E pode ter certeza... Todos os meus dias serão dedicados  
-                para que esse futuro tenha você nele 🫵🤍
+                Hoje não poderia deixar passar a oportunidade de te desejar um feliz aniversário
+                e te dizer algo que sempre surge quando meus pensamentos se aquietam.<br><br>
+
+                Caminhei por muitos lugares, conheci muitas pessoas, vivi desafios,
+                objetivos e sonhos. E, entre tudo isso, existem momentos em que o mundo desacelera
+                e revela possibilidades infinitas — e é justamente nesses momentos
+                que você inevitavelmente surge nos meus pensamentos.<br><br>
+
+                Então, parabéns.
+                Você se tornou a razão de eu me pegar imaginando a
+                <br><strong>“minha bela donzela”</strong>.<br><br>
+
+                Ainda não posso chamá-la assim,
+                mas gosto da ideia de que algumas coisas bonitas
+                se constroem com o tempo, com cuidado e presença.<br><br>
+
+                E quanto ao futuro, sigo com a mesma convicção:<br>
+                <strong>
+                trabalharei para que ele seja um lugar bom, verdadeiro e que faça sentido.
+                E seria incrível tentar dividir esse caminho com você.
+                </strong><br><br>
+                E pode ter certeza... Todos os meus dias serão dedicados para que esse futuro tenha você nele 🫵🤍<br><br>
+                Que esse novo ciclo te traga leveza, paz e dias bons.<br>
+                Aproveite o seu dia 🤍
                 <br><br>
-                     “Talvez não seja o momento ideal para dizer tudo isso, mas sou assim… e, como você gosta de lembrar, esse é o meu jeito único de cortejar KKKK”
+
+                <span style="opacity:0.85; font-size:0.9rem;">
+                Não quero te assustar assim, do nada.<br>
+                Não pense em resposta, eu não estou fazendo perguntas.<br>
+                Estou apenas "jogando" do meu jeito.
+                </span>
             </p>
             <button class="action">Voltar…</button>
         </div>
+
     </div>
 </div>
 
@@ -150,24 +186,23 @@ const colors = ['#e68aa2','#cc5280','#ffd1dc','#ff9eb5'];
 const TOTAL = 250;
 
 // Cria confetes
-for(let i=0;i<TOTAL;i++){
-    const c=document.createElement('div');
-    c.className='confetti';
-    c.style.setProperty('--x',`${(Math.random()-0.5)*900}px`);
-    c.style.setProperty('--y',`${(Math.random()-0.5)*900}px`);
-    c.style.setProperty('--r',`${Math.random()*1080}deg`);
-    c.style.setProperty('--c',colors[Math.floor(Math.random()*colors.length)]);
+for (let i = 0; i < TOTAL; i++) {
+    const c = document.createElement('div');
+    c.className = 'confetti';
+    c.style.setProperty('--x', `${(Math.random() - 0.5) * 900}px`);
+    c.style.setProperty('--y', `${(Math.random() - 0.5) * 900}px`);
+    c.style.setProperty('--r', `${Math.random() * 1080}deg`);
+    c.style.setProperty('--c', colors[Math.floor(Math.random() * colors.length)]);
     layer.appendChild(c);
 }
 
-// Ajusta altura, scroll e centralização
-function ajustarBody(){
+// Ajusta altura e scroll
+function ajustarBody() {
     const front = card.querySelector('.front');
     const back = card.querySelector('.back');
 
-    if(card.classList.contains('flipped')){
-        // Face 2: scroll permitido, margens top/bottom 1.5rem
-        const h = back.scrollHeight + 32; // margem top 1.5rem + bottom 2rem
+    if (card.classList.contains('flipped')) {
+        const h = back.scrollHeight + 32;
         body.style.height = h + 'px';
         body.style.overflowY = 'auto';
         body.style.paddingTop = '1.5rem';
@@ -176,7 +211,6 @@ function ajustarBody(){
         body.style.alignItems = 'flex-start';
         body.style.justifyContent = 'center';
     } else {
-        // Face 1: centralizado vertical e horizontal, sem scroll
         const h = front.scrollHeight + 4;
         body.style.height = h + 'px';
         body.style.overflowY = 'hidden';
@@ -188,9 +222,8 @@ function ajustarBody(){
     }
 }
 
-// Botões de girar e confetes
-buttons.forEach(btn=>{
-    btn.addEventListener('pointerdown', e=>{
+buttons.forEach(btn => {
+    btn.addEventListener('pointerdown', e => {
         e.preventDefault();
         card.classList.toggle('flipped');
 
