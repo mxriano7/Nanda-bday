@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz Aniversário 🎉</title>
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    transition: height 0.3s ease;
+}
+
+/* SCENE */
+.scene {
+    perspective: 1000px;
+    display: flex;
+    justify-content: center;
+}
+
+/* CARD */
+.card {
+    width: 90vw;
+    max-width: 420px;
+    border-radius: 24px;
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(.4,.2,.2,1);
+    position: relative;
+}
+
+/* ROTACIONAR */
+.card.flipped { transform: rotateY(180deg); }
+
+/* FACE */
+.face {
+    backface-visibility: hidden;
+    border-radius: 24px;
+    padding: 2rem;
+    box-sizing: border-box;
+    background: rgba(20,20,20,0.85);
+    backdrop-filter: blur(12px);
+    color: #fff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* FACE 2 */
+.back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotateY(180deg);
+}
+
+/* TEXTOS */
+h1 { margin-bottom: 1rem; }
+.front h1 { font-size: 1.6rem; }
+.back h1 { font-size: 1.4rem; }
+p { font-size: 0.95rem; line-height: 1.55em; color: #e6e6e6; }
+
+/* BOTÃO */
+button {
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.2rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 14px;
+    border: none;
+    background: linear-gradient(135deg,#e68aa2,#cc5280);
+    color: #fff;
+    cursor: pointer;
+}
+
+/* CONFETES */
+.confetti-layer { position: fixed; inset: 0; pointer-events: none; }
+.confetti {
+    position: absolute;
+    width: 8px; height: 14px;
+    background: var(--c);
+    top: 50%; left: 50%;
+    opacity: 0;
+}
+.explode .confetti { animation: explode 1.6s ease-out forwards; }
+@keyframes explode {
+    from { transform: translate(-50%,-50%) rotate(0deg); opacity:1; }
+    to { transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) rotate(var(--r)); opacity:0; }
+}
+</style>
+</head>
+<body id="body">
+
+<div class="scene">
+    <div class="card" id="card">
+        <!-- FACE 1 -->
+        <div class="face front">
+            <h1>Parabénsss 🎉</h1>
+            <p>
+                <strong>Feliz Aniversário, Nanda! ✨</strong><br><br>
+                Hoje não é um dia especial apenas pela data, e sim porque é o dia em que alguém como você surgiu no mundo.<br><br>
+                E isso, por si só, já faz toda a diferença.<br><br>
+                Que Deus esteja sempre contigo, ainda mais neste novo ciclo,  
+                e que os desafios se transformem em leveza ao longo desse caminho 🤍<br><br>
+                Aproveite seu dia, Senhorita 🫂  
+            </p>
+            <button class="action">Celebrar 🎊</button>
+        </div>
+
+        <!-- FACE 2 -->
+        <div class="face back">
+            <h1>Um recado apenas para você 💌</h1>
+            <p>
+                Hoje não poderia deixar passar a oportunidade de te dizer algo que sinto  
+                sempre que meus pensamentos se voltam para você…<br><br>
+                Bom, eu posso dizer que caminhei por mil lugares, vi milhares de pessoas.  
+                Passei por desafios, objetivos e sonhos que pensei serem apenas meus e suficientes,  
+                mas, aos poucos, percebi que, entre essas ambições,  
+                existem instantes em que tudo parece se aquietar,  
+                e o mundo se revela repleto de possibilidades fascinantes e convidativas,  
+                é justamente nesses momentos que você inevitavelmente surge nos meus pensamentos.<br><br>
+                Então parabéns, você se tornou a razão de eu me pegar imaginando a <br>"minha bela donzela" <br><br>
+                Ainda não posso chamá-la assim,  
+                mas algo me diz que isso é só questão de tempo.<br><br>
+                Enquanto isso,  
+                aproveito cada momento em que minha mente se aquieta,  
+                e me pego imaginando o que o futuro pode reservar.<br><br>
+                E pode ter certeza... Todos os meus dias serão dedicados  
+                para que esse futuro tenha você nele 🫵🤍
+                <br><br>
+                     “Talvez não seja o momento ideal para dizer tudo isso, mas sou assim… e, como você gosta de lembrar, esse é o meu jeito único de cortejar KKKK”
+            </p>
+            <button class="action">Voltar…</button>
+        </div>
+    </div>
+</div>
+
+<div class="confetti-layer" id="confetti"></div>
+
+<script>
+const card = document.getElementById("card");
+const layer = document.getElementById("confetti");
+const body = document.getElementById("body");
+const buttons = document.querySelectorAll(".action");
+
+const colors = ['#e68aa2','#cc5280','#ffd1dc','#ff9eb5'];
+const TOTAL = 250;
+
+// Cria confetes
+for(let i=0;i<TOTAL;i++){
+    const c=document.createElement('div');
+    c.className='confetti';
+    c.style.setProperty('--x',`${(Math.random()-0.5)*900}px`);
+    c.style.setProperty('--y',`${(Math.random()-0.5)*900}px`);
+    c.style.setProperty('--r',`${Math.random()*1080}deg`);
+    c.style.setProperty('--c',colors[Math.floor(Math.random()*colors.length)]);
+    layer.appendChild(c);
+}
+
+// Ajusta altura, scroll e centralização
+function ajustarBody(){
+    const front = card.querySelector('.front');
+    const back = card.querySelector('.back');
+
+    if(card.classList.contains('flipped')){
+        // Face 2: scroll permitido, margens top/bottom 1.5rem
+        const h = back.scrollHeight + 32; // margem top 1.5rem + bottom 2rem
+        body.style.height = h + 'px';
+        body.style.overflowY = 'auto';
+        body.style.paddingTop = '1.5rem';
+        body.style.paddingBottom = '2rem';
+        body.style.display = 'flex';
+        body.style.alignItems = 'flex-start';
+        body.style.justifyContent = 'center';
+    } else {
+        // Face 1: centralizado vertical e horizontal, sem scroll
+        const h = front.scrollHeight + 4;
+        body.style.height = h + 'px';
+        body.style.overflowY = 'hidden';
+        body.style.paddingTop = '2rem';
+        body.style.paddingBottom = '2rem';
+        body.style.display = 'flex';
+        body.style.alignItems = 'center';
+        body.style.justifyContent = 'center';
+    }
+}
+
+// Botões de girar e confetes
+buttons.forEach(btn=>{
+    btn.addEventListener('pointerdown', e=>{
+        e.preventDefault();
+        card.classList.toggle('flipped');
+
+        layer.classList.remove('explode');
+        void layer.offsetWidth;
+        layer.classList.add('explode');
+
+        ajustarBody();
+    });
+});
+
+window.addEventListener('resize', ajustarBody);
+ajustarBody();
+</script>
+
+</body>
+</html>
